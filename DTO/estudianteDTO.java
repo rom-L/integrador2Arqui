@@ -1,5 +1,5 @@
 package integrador2Arqui.DTO;
 
-public class estudianteDTO {
+public class EstudianteDTO {
 
 }

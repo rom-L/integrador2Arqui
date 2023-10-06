@@ -1,5 +1,5 @@
 package integrador2Arqui.DTO;
 
-public class reporteDTO {
+public class ReporteDTO {
 
 }

@@ -1,5 +1,5 @@
 package integrador2Arqui.DTO;
 
-public class carreraDTO {
+public class CarreraDTO {
 
 }
