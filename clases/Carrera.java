@@ -1,6 +1,6 @@
 package integrador2Arqui.clases;
 
-import javax.persistence.*;
+import java.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
