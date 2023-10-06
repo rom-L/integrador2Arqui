@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+
+    <persistence-unit name="integrador2ArquiPU">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>integrador2Arqui.repositorios.RepoCarreraMySQL</class>
+        <class>integrador2Arqui.repositorios.RepoEstudianteCarreraMySQL</class>
+        <class>integrador2Arqui.repositorios.RepoEstudianteMySQL</class>
+        
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/integrador2"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            
+            <!-- Specify the dialect for MySQL -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            
+            <!-- Configure Hibernate to create/update the database schema automatically -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            
+            <!-- Specify the connection pool settings -->
+            <property name="hibernate.connection.pool_size" value="5"/>
+            
+            <!-- Enable Hibernate's second-level cache (optional) -->
+            <!-- <property name="hibernate.cache.provider_class" value="org.hibernate.cache.internal.NoCachingRegionFactory"/> -->
+            
+            <!-- Enable JPA annotations scanning -->
+            <property name="hibernate.archive.autodetection" value="class"/>
+        </properties>
+    </persistence-unit>
+</persistence>
