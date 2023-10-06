@@ -1,17 +1,12 @@
 package integrador2Arqui.interfaces;
 
+import integrador2Arqui.DTO.CarreraConInscriptosDTO;
+import integrador2Arqui.DTO.EstudianteDTO;
+import integrador2Arqui.clases.Carrera;
+import integrador2Arqui.clases.Estudiante;
 
 public interface RepoEstudianteCarrera {
-	//matricular un estudiante en una carrera
-	//recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos
-	//recuperar los estudiantes de una determinada carrera, filtrado por ciudad de residencia
-	
-	/*
-	public void insert(Estudiante estudiante);
-	public estudianteDTO getAll();
-	public estudianteDTO getByLibreta(int id);
-	public estudianteDTO getByGenero(String genero);
-	public boolean delete(int id);
-	public boolean update(Estudiante estudiante);
-	*/
+	public void insert(Estudiante estudiante, Carrera carrera);	//matricula un estudiante a una carrera
+	public CarreraConInscriptosDTO getCarrerasConInscriptos();	/**ORDENAR POR CANT. INSCRIPTOS**/
+	public EstudianteDTO getEstudiantesByCarrera(Carrera carrera); /**FILTRAR POR CIUDAD DE RESIDENCIA**/
 }

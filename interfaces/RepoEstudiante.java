@@ -5,7 +5,7 @@ import integrador2Arqui.clases.Estudiante;
 
 public interface RepoEstudiante {
 	public void insert(Estudiante estudiante);
-	public EstudianteDTO getAll();
+	public EstudianteDTO getAll();	/**ORDENAR DE ALGUNA MANERA**/
 	public EstudianteDTO getByLibreta(int id);
 	public EstudianteDTO getByGenero(String genero);
 	public boolean delete(int id);
