@@ -1,5 +1,5 @@
 package integrador2Arqui.interfaces;
 
-public class RepoCarrera {
+public interface RepoCarrera {
 
 }
