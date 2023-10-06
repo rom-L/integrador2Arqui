@@ -1,35 +1,46 @@
 package integrador2Arqui.clases;
 
-import java.util.List;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
+@Table(name = "carrera")
 public class Carrera {
-	private int id;
-	private String nombre;
-	private List<Estudiante> estudiantes; 
-	
-	public Carrera(int id, String nombre) {
-		this.id = id;
-		this.nombre = nombre;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "carrera_id")
+    private Long id;
 
-	public int getId() {
-		return id;
-	}
+    @Column(name = "nombre")
+    private String nombre;
 
-	public String getNombre() {
-		return nombre;
-	}
+    @ManyToMany(mappedBy = "carreras")
+    private Set<Estudiante> estudiantes = new HashSet<>();
 
-	public void agregarEstudiante(Estudiante e) {
-		estudiantes.add(e);
-	}
-	
-	public List<Estudiante> getEstudiantes() {
-		return this.estudiantes;
-	}
-	
-	
-	
-	
+    public Carrera() {
+        // Default constructor
+    }
 
+    public Carrera(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Set<Estudiante> getEstudiantes() {
+        return estudiantes;
+    }
+
+    public void setEstudiantes(Set<Estudiante> estudiantes) {
+        this.estudiantes = estudiantes;
+    }
+
+    public void addEstudiante(Estudiante estudiante) {
+        estudiantes.add(estudiante);
+        estudiante.getCarreras().add(this);
+    }
+
+    public void removeEstudiante(Estudiante estudiante) {
+        estudiantes.remove(estudiante);
+        estudiante.getCarreras().remove(this);
+    }
 }
