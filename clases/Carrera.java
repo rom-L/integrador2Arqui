@@ -21,7 +21,7 @@ public class Carrera {
     public Carrera() {
         // Default constructor
     }
-
+    
     public Carrera(String nombre) {
         this.nombre = nombre;
     }
