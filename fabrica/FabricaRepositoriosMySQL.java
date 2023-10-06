@@ -1,7 +1,7 @@
 package integrador2Arqui.fabrica;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import integrador2Arqui.interfaces.RepoCarrera;
 import integrador2Arqui.interfaces.RepoEstudiante;
 import integrador2Arqui.interfaces.RepoEstudianteCarrera;
