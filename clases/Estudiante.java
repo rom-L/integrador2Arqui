@@ -9,9 +9,8 @@ import java.util.Set;
 public class Estudiante {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "dni")
+    private int dni;
 
     @Column(name = "nombres")
     private String nombres;
@@ -25,21 +24,80 @@ public class Estudiante {
     @Column(name = "genero")
     private String genero;
 
-    @Column(name = "dni")
-    private String dni;
-
     @Column(name = "ciudad_residencia")
     private String ciudadResidencia;
 
     @Column(name = "numero_libreta")
     private String numeroLibreta;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "estudiante_carrera",
-            joinColumns = @JoinColumn(name = "estudiante_id"),
-            inverseJoinColumns = @JoinColumn(name = "carrera_id")
-    )
+    @ManyToMany
     private Set<Carrera> carreras = new HashSet<>();
+
+	public int getDni() {
+		return dni;
+	}
+
+	public String getNombres() {
+		return nombres;
+	}
+
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public int getEdad() {
+		return edad;
+	}
+
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public String getCiudadResidencia() {
+		return ciudadResidencia;
+	}
+
+	public void setCiudadResidencia(String ciudadResidencia) {
+		this.ciudadResidencia = ciudadResidencia;
+	}
+
+	public String getNumeroLibreta() {
+		return numeroLibreta;
+	}
+
+	public void setNumeroLibreta(String numeroLibreta) {
+		this.numeroLibreta = numeroLibreta;
+	}
+
+	public Set<Carrera> getCarreras() {
+		return carreras;
+	}
+
+	public void addCarrera(Carrera carrera) {
+        this.carreras.add(carrera);
+        carrera.addEstudiante(this);
+    }
+	
+    public void removeCarrera(Carrera carrera) {
+    	this.carreras.remove(carrera);
+    	carrera.removeEstudiante(this);
+    }
+    
 
 }
