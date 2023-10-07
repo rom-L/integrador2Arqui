@@ -1,9 +1,12 @@
 package integrador2Arqui.repositorios;
 
+import java.util.List;
+
 import integrador2Arqui.DTO.EstudianteDTO;
 import integrador2Arqui.clases.Estudiante;
 import integrador2Arqui.interfaces.RepoEstudiante;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
 public class RepoEstudianteMySQL implements RepoEstudiante {
 	private EntityManager manager;
@@ -20,13 +23,13 @@ public class RepoEstudianteMySQL implements RepoEstudiante {
 	}
 
 	@Override
-	public List<Estudiante> getAll() {
+	public List<EstudianteDTO> getAll() {
 		TypedQuery<Estudiante> query = manager.createQuery("SELECT e FROM Estudiante e", Estudiante.class);
 		return query.getResultList();
 	}
 
 	@Override
-	public Estudiante getByLibreta(String numeroLibreta) {
+	public EstudianteDTO getByLibreta(String numeroLibreta) {
 		TypedQuery<Estudiante> query = manager
 				.createQuery("SELECT e FROM Estudiante e WHERE e.numeroLibreta = :libreta", Estudiante.class);
 		query.setParameter("libreta", numeroLibreta);
