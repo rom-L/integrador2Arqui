@@ -5,6 +5,9 @@ import jakarta.persistence.Persistence;
 import integrador2Arqui.interfaces.RepoCarrera;
 import integrador2Arqui.interfaces.RepoEstudiante;
 import integrador2Arqui.interfaces.RepoEstudianteCarrera;
+import integrador2Arqui.repositorios.RepoCarreraMySQL;
+import integrador2Arqui.repositorios.RepoEstudianteCarreraMySQL;
+import integrador2Arqui.repositorios.RepoEstudianteMySQL;
 
 public class FabricaRepositoriosMySQL extends FabricaRepositorios {
     private static FabricaRepositoriosMySQL INSTANCE;
