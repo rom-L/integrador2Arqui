@@ -44,4 +44,8 @@ public class Carrera {
     public void removeEstudiante(Estudiante estudiante) {
         estudiantes.remove(estudiante);
     }
+
+	public long getId() {
+		return this.id;
+	}
 }
