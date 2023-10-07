@@ -42,4 +42,9 @@ public class Estudiante {
     )
     private Set<Carrera> carreras = new HashSet<>();
 
+	public Set<Estudiante> getCarreras() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
