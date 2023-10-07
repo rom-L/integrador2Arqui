@@ -5,47 +5,62 @@ import integrador2Arqui.clases.Estudiante;
 import integrador2Arqui.interfaces.RepoEstudiante;
 import jakarta.persistence.EntityManager;
 
-public class RepoEstudianteMySQL implements RepoEstudiante{
+public class RepoEstudianteMySQL implements RepoEstudiante {
 	private EntityManager manager;
-	
+
 	public RepoEstudianteMySQL(EntityManager manager) {
 		this.manager = manager;
 	}
 
-	
 	@Override
 	public void insert(Estudiante estudiante) {
-		// TODO Auto-generated method stub
-		
+		manager.getTransaction().begin();
+		manager.persist(estudiante);
+		manager.getTransaction().commit();
 	}
 
 	@Override
-	public EstudianteDTO getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Estudiante> getAll() {
+		TypedQuery<Estudiante> query = manager.createQuery("SELECT e FROM Estudiante e", Estudiante.class);
+		return query.getResultList();
 	}
 
 	@Override
-	public EstudianteDTO getByLibreta(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Estudiante getByLibreta(String numeroLibreta) {
+		TypedQuery<Estudiante> query = manager
+				.createQuery("SELECT e FROM Estudiante e WHERE e.numeroLibreta = :libreta", Estudiante.class);
+		query.setParameter("libreta", numeroLibreta);
+		return query.getSingleResult();
 	}
 
 	@Override
-	public EstudianteDTO getByGenero(String genero) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Estudiante> getByGenero(String genero) {
+		TypedQuery<Estudiante> query = manager.createQuery("SELECT e FROM Estudiante e WHERE e.genero = :genero",
+				Estudiante.class);
+		query.setParameter("genero", genero);
+		return query.getResultList();
 	}
 
 	@Override
 	public boolean delete(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		manager.getTransaction().begin();
+		Estudiante estudiante = manager.find(Estudiante.class, id);
+		if (estudiante != null) {
+			manager.remove(estudiante);
+			manager.getTransaction().commit();
+			return true;
+		} else {
+			manager.getTransaction().rollback();
+			return false;
+		}
 	}
 
 	@Override
 	public boolean update(Estudiante estudiante) {
-		// TODO Auto-generated method stub
-		return false;
+		manager.getTransaction().begin();
+		manager.merge(estudiante);
+		manager.getTransaction().commit();
+		return true;
 	}
+
 }

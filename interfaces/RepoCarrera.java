@@ -1,5 +1,7 @@
 package integrador2Arqui.interfaces;
 
+import java.util.List;
+
 import integrador2Arqui.clases.Carrera;
 
 public interface RepoCarrera {
@@ -7,4 +9,5 @@ public interface RepoCarrera {
 	public boolean delete(int id);
 	public boolean update(Carrera c);
 	public Carrera get(int id);
+	public List<Carrera> getAll();
 }
