@@ -25,4 +25,9 @@ public abstract class FabricaRepositorios {
 			return null;
 		}
 	}
+
+	public void closeConnection() {
+		// TODO Auto-generated method stub
+		
+	}
 }

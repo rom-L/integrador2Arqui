@@ -98,6 +98,4 @@ public class Estudiante {
     	this.carreras.remove(carrera);
     	carrera.removeEstudiante(this);
     }
-    
-
 }
