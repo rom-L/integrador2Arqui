@@ -15,7 +15,7 @@ public abstract class FabricaRepositorios {
 	
 	public abstract RepoEstudianteCarrera getRepoEstudianteCarrera();
 	
-	public static FabricaRepositorios getInstance(int whichFactory) throws SQLException {
+	public static FabricaRepositorios getFactory(int whichFactory) throws SQLException {
 		switch (whichFactory) {
 		case MYSQL_JPA:
 			return FabricaRepositoriosMySQL.getInstance();
