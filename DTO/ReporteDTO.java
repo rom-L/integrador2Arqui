@@ -45,4 +45,9 @@ public class ReporteDTO {
     public void setEgresadosPorAno(int egresadosPorAno) {
         this.egresadosPorAno = egresadosPorAno;
     }
+
+    @Override
+    public String toString() {
+        return this.idCarrera + " - " + this.nombreCarrera + "| Inscriptos: " + this.cantInscriptos + "| Egresados por año: " + this.egresadosPorAno;
+    }
 }
