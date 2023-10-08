@@ -7,6 +7,16 @@ public class ReporteDTO {
     private int anio;
     
     
+    
+	public ReporteDTO(CarreraDTO carrera, int cantInscriptosPorAnio, int egresadosPorAnio, int anio) {
+		super();
+		this.carrera = carrera;
+		this.cantInscriptosPorAnio = cantInscriptosPorAnio;
+		this.egresadosPorAnio = egresadosPorAnio;
+		this.anio = anio;
+	}
+
+
 	public CarreraDTO getCarrera() {
 		return carrera;
 	}

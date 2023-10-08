@@ -77,11 +77,11 @@ public class RepoEstudianteCarreraMySQL implements RepoEstudianteCarrera {
         for (Object[] result : results) {
             String carreraNombre = (String) result[0];
             int anio = (int) result[1];
-            long totalInscritos = (int) result[2];
-            long totalGraduados = (int) result[3];
+            int totalInscritos = (int) result[2];
+            int totalGraduados = (int) result[3];
 
             CarreraDTO carreraDTO = new CarreraDTO(carreraNombre);
-            ReporteDTO reporteDTO = new ReporteDTO(carreraDTO, (int) totalInscritos, (int) totalGraduados);
+            ReporteDTO reporteDTO = new ReporteDTO(carreraDTO, totalInscritos, totalGraduados, anio);
 
             reporteDTOList.add(reporteDTO);
         }
