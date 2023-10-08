@@ -1,5 +1,6 @@
 package integrador2Arqui.repositorios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import integrador2Arqui.DTO.CarreraDTO;
@@ -10,6 +11,7 @@ import integrador2Arqui.clases.Estudiante;
 import integrador2Arqui.interfaces.RepoEstudianteCarrera;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
 public class RepoEstudianteCarreraMySQL implements RepoEstudianteCarrera {
 	private EntityManager manager;
@@ -27,22 +29,33 @@ public class RepoEstudianteCarreraMySQL implements RepoEstudianteCarrera {
 
 	//REVISAR
     @Override
-    public CarreraDTO getCarrerasConInscriptos() {
-        // Retrieve a list of CarreraConInscriptosDTO objects (courses with enrolled students), sorted by the number of inscriptos
-        Query query = manager.createQuery("SELECT NEW integrador2Arqui.DTO.CarreraDTO(c, c.estudiantes.size()) FROM Carrera c ORDER BY c.estudiantes.size() DESC");
-        List<CarreraDTO> carrerasConInscriptos = query.getResultList();
-        return new CarreraDTO(carrerasConInscriptos);
+    public List<CarreraDTO> getCarrerasConInscriptos() {
+        TypedQuery<Carrera> query = manager.createQuery("SELECT c FROM Carrera c ORDER BY c.estudiantes.size() DESC", Carrera.class);
+        List<Carrera> carreras = query.getResultList();
+		List<CarreraDTO> carrerasDTO = new ArrayList<CarreraDTO>();
+		for (Carrera carrera : carreras) {
+			CarreraDTO carreraDTO = new CarreraDTO(carrera.getId(), carrera.getNombre());
+			carrerasDTO.add(carreraDTO);
+		}
+		return carrerasDTO;
     }
 
     //REVISAR
     @Override
-    public EstudianteDTO getEstudiantesByCarrera(Carrera carrera, String ciudadResidencia) {
-        // Retrieve an EstudianteDTO object (students enrolled in a specific course and filtered by ciudadResidencia)
-        Query query = manager.createQuery("SELECT NEW integrador2Arqui.DTO.EstudianteDTO(e) FROM Estudiante e JOIN e.carreras c WHERE c.id = :carreraId AND e.ciudadResidencia = :ciudadResidencia");
+    public List<EstudianteDTO> getEstudiantesByCarrera(Carrera carrera, String ciudadResidencia) {
+        TypedQuery<Estudiante> query = manager.createQuery("SELECT e FROM Estudiante e JOIN e.carreras c WHERE c.id = :carreraId AND e.ciudadResidencia = :ciudadResidencia", Estudiante.class);
         query.setParameter("carreraId", carrera.getId());
         query.setParameter("ciudadResidencia", ciudadResidencia);
-        List<EstudianteDTO> estudiantesByCarrera = query.getResultList();
-        return new EstudianteDTO(estudiantesByCarrera);
+        List<Estudiante> estudiantes = query.getResultList();
+		List<EstudianteDTO> estudiantesDTO = new ArrayList<EstudianteDTO>();
+		for (Estudiante estudiante : estudiantes) {
+			EstudianteDTO estudianteDTO = new EstudianteDTO(estudiante.getDni(), estudiante.getNombres(), 
+															estudiante.getApellido(), estudiante.getEdad(), 
+															estudiante.getGenero(), estudiante.getCiudadResidencia(), 
+															estudiante.getNumeroLibreta());
+			estudiantesDTO.add(estudianteDTO);
+		}
+		return estudiantesDTO;
     }
     
     //REVISAR
@@ -59,12 +72,5 @@ public class RepoEstudianteCarreraMySQL implements RepoEstudianteCarrera {
         // Create a ReporteDTO object based on the sorted Carrera list and organized years
         return new ReporteDTO(carreras, yearsMap);
     }
-
-
-	@Override
-	public EstudianteDTO getEstudiantesByCarrera(Carrera carrera) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
