@@ -12,5 +12,5 @@ public interface RepoEstudianteCarrera {
 	public void matricular(Estudiante estudiante, Carrera carrera);	//matricula un estudiante a una carrera
 	public List<CarreraDTO> getCarrerasConInscriptos();	/**ORDENAR POR CANT. INSCRIPTOS**/
 	public List<EstudianteDTO> getEstudiantesByCarrera(Carrera carrera, String ciudadResidencia); /**FILTRAR POR CIUDAD DE RESIDENCIA**/
-	public ReporteDTO getReportes(); /**ordenar las carreras alfabéticamente, y presentar los años de manera cronológica**/
+	public List<ReporteDTO> getReportes(); /**ordenar las carreras alfabéticamente, y presentar los años de manera cronológica**/
 }
