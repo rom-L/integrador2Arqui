@@ -30,7 +30,10 @@ public class RepoEstudianteMySQL implements RepoEstudiante {
 		List<Estudiante> estudiantes = query.getResultList();
 		List<EstudianteDTO> estudiantesDTO = new ArrayList<EstudianteDTO>();
 		for (Estudiante estudiante : estudiantes) {
-			EstudianteDTO estudianteDTO = new EstudianteDTO(/* Parametros del constructor; estudiante.getNombre() */);
+			EstudianteDTO estudianteDTO = new EstudianteDTO(estudiante.getDni(), estudiante.getNombres(), 
+															estudiante.getApellido(), estudiante.getEdad(), 
+															estudiante.getGenero(), estudiante.getCiudadResidencia(), 
+															estudiante.getNumeroLibreta());
 			estudiantesDTO.add(estudianteDTO);
 		}
 		return estudiantesDTO;
@@ -42,7 +45,10 @@ public class RepoEstudianteMySQL implements RepoEstudiante {
 				.createQuery("SELECT e FROM Estudiante e WHERE e.numeroLibreta = :libreta", Estudiante.class);
 		query.setParameter("libreta", numeroLibreta);
 		Estudiante estudiante = query.getSingleResult();
-		EstudianteDTO estudianteDTO = new EstudianteDTO(/* Parametros del constructor; estudiante.getNombre() */);
+		EstudianteDTO estudianteDTO = new EstudianteDTO(estudiante.getDni(), estudiante.getNombres(), 
+														estudiante.getApellido(), estudiante.getEdad(), 
+														estudiante.getGenero(), estudiante.getCiudadResidencia(), 
+														estudiante.getNumeroLibreta());
 		return estudianteDTO;
 	}
 
