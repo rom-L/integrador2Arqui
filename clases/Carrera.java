@@ -20,11 +20,7 @@ public class Carrera {
 
     public Carrera(Long id, String nombre) {
     		this.id = id;
-    		this.nombre = nombre;	
-    }
-    
-    public Carrera(String nombre) {
-        this.nombre = nombre;
+    		this.nombre = nombre;		
     }
 
     public Set<Estudiante> getEstudiantes() {
