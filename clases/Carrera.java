@@ -16,12 +16,18 @@ public class Carrera {
     private String nombre;
 
     @ManyToMany(mappedBy = "carreras")
-    private Set<Estudiante> estudiantes = new HashSet<>();
+    private Set<Estudiante> estudiantes;
 
-    public Carrera(Long id, String nombre) {
-    		this.id = id;
-    		this.nombre = nombre;		
+    protected Carrera() {
+        //se usa un constructor sin argumentos para que JPA instancie la entidad
     }
+
+    public Carrera(String nombre) {
+        this();    //llamo al constructor sin argumentos para instanciar la entidad
+        this.nombre = nombre;
+        this.estudiantes = new HashSet<>();
+    }
+
 
     public Set<Estudiante> getEstudiantes() {
         return estudiantes;

@@ -22,7 +22,12 @@ public class EstudianteCarrera {
     @Column(name = "tiempo_cursada")
     private int aniosAntiguedad;
 
+    protected EstudianteCarrera() {
+        //se usa un constructor sin argumentos para que JPA instancie la entidad
+    }
+
     public EstudianteCarrera(Estudiante estudiante, Carrera carrera, boolean graduado, int aniosAntiguedad) {
+        this();    //llamo al constructor sin argumentos para instanciar la entidad
         this.estudiante = estudiante;
         this.carrera = carrera;
         this.graduado = graduado;

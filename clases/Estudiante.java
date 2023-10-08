@@ -31,10 +31,14 @@ public class Estudiante {
 	private String numeroLibreta;
 
 	@ManyToMany
-	private Set<Carrera> carreras = new HashSet<>();
-	
-	public Estudiante(int dni, String nombres, String apellido, int edad, String genero, String ciudadResidencia,
-			String numeroLibreta) {
+	private Set<Carrera> carreras;
+
+	protected Estudiante() {
+		//se usa un constructor sin argumentos para que JPA instancie la entidad
+	}
+
+	public Estudiante(int dni, String nombres, String apellido, int edad, String genero, String ciudadResidencia, String numeroLibreta) {
+		this();		//llamo al constructor sin argumentos para instanciar la entidad
 		this.dni = dni;
 		this.nombres = nombres;
 		this.apellido = apellido;
@@ -42,6 +46,7 @@ public class Estudiante {
 		this.genero = genero;
 		this.ciudadResidencia = ciudadResidencia;
 		this.numeroLibreta = numeroLibreta;
+		this.carreras = new HashSet<>();
 	}
 
 	public int getDni() {
