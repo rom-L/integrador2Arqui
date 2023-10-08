@@ -39,7 +39,7 @@ public class RepoEstudianteMySQL implements RepoEstudiante {
 	}
 
 	@Override
-	public EstudianteDTO getByLibreta(String numeroLibreta) {
+	public EstudianteDTO getByLibreta(int numeroLibreta) {
 		TypedQuery<Estudiante> query = manager
 				.createQuery("SELECT e FROM Estudiante e WHERE e.numeroLibreta = :libreta", Estudiante.class);
 		query.setParameter("libreta", numeroLibreta);

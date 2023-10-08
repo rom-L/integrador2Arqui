@@ -10,7 +10,7 @@ public class Carrera {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name = "nombre")
     private String nombre;
@@ -18,12 +18,13 @@ public class Carrera {
     @ManyToMany(mappedBy = "carreras")
     private Set<Estudiante> estudiantes;
 
-    protected Carrera() {
-        //se usa un constructor sin argumentos para que JPA instancie la entidad
+    public Carrera(int id, String nombre) {
+    	this(nombre);
+    	this.id = id;
+        this.estudiantes = new HashSet<>();
     }
-
+    
     public Carrera(String nombre) {
-        this();    //llamo al constructor sin argumentos para instanciar la entidad
         this.nombre = nombre;
         this.estudiantes = new HashSet<>();
     }
