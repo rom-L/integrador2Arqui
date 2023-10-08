@@ -1,5 +1,7 @@
 package integrador2Arqui.clases;
 
+import java.util.Date;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -16,22 +18,22 @@ public class EstudianteCarrera {
     @JoinColumn(name = "carrera_id")
     private Carrera carrera;
 
-    @Column(name = "graduado")
-    private boolean graduado;
+    @Column(name = "anio_inscripcion")
+    private Date anioInscripcion;
 
-    @Column(name = "tiempo_cursada")
-    private int aniosAntiguedad;
+    @Column(name = "anio_graduacion", nullable = true)
+    private Date anioGraduacion;
 
     protected EstudianteCarrera() {
         //se usa un constructor sin argumentos para que JPA instancie la entidad
     }
 
-    public EstudianteCarrera(Estudiante estudiante, Carrera carrera, boolean graduado, int aniosAntiguedad) {
+    public EstudianteCarrera(Estudiante estudiante, Carrera carrera, Date anioInscripcion, Date anioGraduacion) {
         this();    //llamo al constructor sin argumentos para instanciar la entidad
         this.estudiante = estudiante;
         this.carrera = carrera;
-        this.graduado = graduado;
-        this.aniosAntiguedad = aniosAntiguedad;
+        this.anioInscripcion = anioInscripcion;
+        this.anioGraduacion = anioGraduacion;
     }
 
     // Getters and setters

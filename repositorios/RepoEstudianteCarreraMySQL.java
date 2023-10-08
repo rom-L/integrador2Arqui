@@ -60,9 +60,36 @@ public class RepoEstudianteCarreraMySQL implements RepoEstudianteCarrera {
     
     //REVISAR
     @Override
-    public ReporteDTO getReporteCarreras() {
-        // Retrieve a list of Carrera objects, sorted alphabetically by nombre
-        Query query = manager.createQuery(
+    public List<ReporteDTO> getReportes() {
+    	String queryString = "SELECT c.nombre AS carrera_nombre, ec.anioInscripcion AS anio, " +
+                "COUNT(CASE WHEN ec.anioInscripcion IS NOT NULL THEN 1 ELSE NULL END) AS totalInscritos, " +
+                "COUNT(CASE WHEN ec.anioGraduacion IS NOT NULL THEN 1 ELSE NULL END) AS totalGraduados " +
+                "FROM Carrera c " +
+                "LEFT JOIN EstudianteCarrera ec ON c.id = ec.carrera.id " +
+                "GROUP BY c.nombre, ec.anioInscripcion " +
+                "ORDER BY c.nombre ASC, ec.anioInscripcion ASC";
+    	
+    	Query query = manager.createNamedQuery(queryString);
+    	
+    	List<ReporteDTO> reporteDTOList = new ArrayList<>();
+
+        List<Object[]> results = query.getResultList();
+        for (Object[] result : results) {
+            String carreraNombre = (String) result[0];
+            int anio = (int) result[1];
+            long totalInscritos = (int) result[2];
+            long totalGraduados = (int) result[3];
+
+            CarreraDTO carreraDTO = new CarreraDTO(carreraNombre);
+            ReporteDTO reporteDTO = new ReporteDTO(carreraDTO, (int) totalInscritos, (int) totalGraduados);
+
+            reporteDTOList.add(reporteDTO);
+        }
+
+        return reporteDTOList;
+    	
+    	// Retrieve a list of Carrera objects, sorted alphabetically by nombre
+        /*Query query = manager.createQuery(
 						        		"SELECT c.nombre AS Carrera, e.anno AS Anno \r\n"
 						        		+ "SUM(e.graduado = 0) AS Inscritos,\r\n"
 						        		+ "SUM(e.graduado = 1) AS Egresados\r\n"
@@ -86,7 +113,7 @@ public class RepoEstudianteCarreraMySQL implements RepoEstudianteCarrera {
         // and the values are lists of years representing the chronological order.
 
         // Create a ReporteDTO object based on the sorted Carrera list and organized years
-        return new ReporteDTO(carreras, yearsMap);
+        return new ReporteDTO(carreras, yearsMap);*/
     }
 
 }

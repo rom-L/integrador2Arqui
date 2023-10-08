@@ -1,21 +1,10 @@
 package integrador2Arqui.DTO;
 
 public class CarreraDTO {
-    private Long id;
     private String nombre;
 
-    public CarreraDTO(Long id, String nombre) {
-        this.id = id;
+    public CarreraDTO(String nombre) {
         this.nombre = nombre;
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNombre() {
@@ -28,6 +17,6 @@ public class CarreraDTO {
 
     @Override
     public String toString() {
-        return this.id + " - " + this.nombre;
+        return this.nombre;
     }
 }
