@@ -20,7 +20,7 @@ public class EstudianteDTO {
         this.numeroLibreta = numeroLibreta;
     }
 
-    
+
     public int getDni() {
         return dni;
     }
@@ -75,5 +75,10 @@ public class EstudianteDTO {
 
     public void setNumeroLibreta(String numeroLibreta) {
         this.numeroLibreta = numeroLibreta;
+    }
+
+    @Override
+    public String toString() {
+        return this.dni + " - " + this.nombre + " " + this.apellido + "| Edad: " + this.edad + "| Genero: " + this.genero + "| Ciudad: " + this.ciudadResidencia + "| Nro Libreta: " + this.numeroLibreta;
     }
 }
