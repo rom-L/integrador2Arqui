@@ -7,6 +7,17 @@ import java.util.Set;
 @Entity
 @Table(name = "estudiantes")
 public class Estudiante {
+	
+	public Estudiante(int dni, String nombres, String apellido, int edad, String genero, String ciudadResidencia,
+			String numeroLibreta) {
+		this.dni = dni;
+		this.nombres = nombres;
+		this.apellido = apellido;
+		this.edad = edad;
+		this.genero = genero;
+		this.ciudadResidencia = ciudadResidencia;
+		this.numeroLibreta = numeroLibreta;
+	}
 
 	@Id
 	@Column(name = "dni")

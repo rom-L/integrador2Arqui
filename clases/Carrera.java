@@ -7,7 +7,8 @@ import java.util.Set;
 @Entity
 @Table(name = "carreras")
 public class Carrera {
-    @Id
+	
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -17,8 +18,9 @@ public class Carrera {
     @ManyToMany(mappedBy = "carreras")
     private Set<Estudiante> estudiantes = new HashSet<>();
 
-    public Carrera() {
-        // Default constructor	
+    public Carrera(Long id, String nombre) {
+    		this.id = id;
+    		this.nombre = nombre;	
     }
     
     public Carrera(String nombre) {

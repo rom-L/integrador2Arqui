@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "estudiante_carrera")
 public class EstudianteCarrera {
-
+	
     @Id
     @ManyToOne
     @JoinColumn(name = "estudiante_dni")
@@ -21,10 +21,6 @@ public class EstudianteCarrera {
 
     @Column(name = "tiempo_cursada")
     private int aniosAntiguedad;
-
-    public EstudianteCarrera() {
-        // Default constructor
-    }
 
     public EstudianteCarrera(Estudiante estudiante, Carrera carrera, boolean graduado, int aniosAntiguedad) {
         this.estudiante = estudiante;
