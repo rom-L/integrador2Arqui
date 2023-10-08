@@ -8,30 +8,30 @@ import java.util.Set;
 @Table(name = "estudiantes")
 public class Estudiante {
 
-    @Id
-    @Column(name = "dni")
-    private int dni;
+	@Id
+	@Column(name = "dni")
+	private int dni;
 
-    @Column(name = "nombres")
-    private String nombres;
+	@Column(name = "nombres")
+	private String nombres;
 
-    @Column(name = "apellido")
-    private String apellido;
+	@Column(name = "apellido")
+	private String apellido;
 
-    @Column(name = "edad")
-    private int edad;
+	@Column(name = "edad")
+	private int edad;
 
-    @Column(name = "genero")
-    private String genero;
+	@Column(name = "genero")
+	private String genero;
 
-    @Column(name = "ciudad_residencia")
-    private String ciudadResidencia;
+	@Column(name = "ciudad_residencia")
+	private String ciudadResidencia;
 
-    @Column(name = "numero_libreta")
-    private String numeroLibreta;
+	@Column(name = "numero_libreta")
+	private String numeroLibreta;
 
-    @ManyToMany
-    private Set<Carrera> carreras = new HashSet<>();
+	@ManyToMany
+	private Set<Carrera> carreras = new HashSet<>();
 
 	public int getDni() {
 		return dni;
@@ -90,12 +90,10 @@ public class Estudiante {
 	}
 
 	public void addCarrera(Carrera carrera) {
-        this.carreras.add(carrera);
-        carrera.addEstudiante(this);
-    }
-	
-    public void removeCarrera(Carrera carrera) {
-    	this.carreras.remove(carrera);
-    	carrera.removeEstudiante(this);
-    }
+		this.carreras.add(carrera);
+	}
+
+	public void removeCarrera(Carrera carrera) {
+		this.carreras.remove(carrera);
+	}
 }

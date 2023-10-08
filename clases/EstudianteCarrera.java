@@ -20,17 +20,17 @@ public class EstudianteCarrera {
     private boolean graduado;
 
     @Column(name = "tiempo_cursada")
-    private int tiempoCursada;
+    private int aniosAntiguedad;
 
     public EstudianteCarrera() {
         // Default constructor
     }
 
-    public EstudianteCarrera(Estudiante estudiante, Carrera carrera, boolean graduado, int tiempoCursada) {
+    public EstudianteCarrera(Estudiante estudiante, Carrera carrera, boolean graduado, int aniosAntiguedad) {
         this.estudiante = estudiante;
         this.carrera = carrera;
         this.graduado = graduado;
-        this.tiempoCursada = tiempoCursada;
+        this.aniosAntiguedad = aniosAntiguedad;
     }
 
     // Getters and setters
@@ -58,11 +58,11 @@ public class EstudianteCarrera {
         this.graduado = graduado;
     }
 
-    public int getTiempoCursada() {
-        return tiempoCursada;
+    public int getAniosAntiguedad() {
+        return aniosAntiguedad;
     }
 
-    public void setTiempoCursada(int tiempoCursada) {
-        this.tiempoCursada = tiempoCursada;
+    public void setAniosAntiguedad(int aniosAntiguedad) {
+        this.aniosAntiguedad = aniosAntiguedad;
     }
 }
