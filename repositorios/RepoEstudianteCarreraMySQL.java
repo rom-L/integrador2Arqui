@@ -62,7 +62,23 @@ public class RepoEstudianteCarreraMySQL implements RepoEstudianteCarrera {
     @Override
     public ReporteDTO getReporteCarreras() {
         // Retrieve a list of Carrera objects, sorted alphabetically by nombre
-        Query query = manager.createQuery("SELECT c FROM Carrera c ORDER BY c.nombre ASC");
+        Query query = manager.createQuery(
+						        		"SELECT c.nombre AS Carrera, e.anno AS Anno \r\n"
+						        		+ "SUM(e.graduado = 0) AS Inscritos,\r\n"
+						        		+ "SUM(e.graduado = 1) AS Egresados\r\n"
+						        		+ "FROM carrera c\r\n"
+						        		+ "LEFT JOIN\r\n"
+						        		+ "    EstudianteCarrera ec ON c.id = ec.carrera_id\r\n"
+						        		+ "LEFT JOIN\r\n"
+						        		+ "    estudiante e ON ec.estudiante_id = e.id\r\n"
+						        		+ "GROUP BY\r\n"
+						        		+ "    c.nombre,\r\n"
+						        		+ "    e.anno\r\n"
+						        		+ "ORDER BY\r\n"
+						        		+ "    c.nombre ASC,\r\n"
+						        		+ "    e.anno ASC;");
+       
+        
         List<Carrera> carreras = query.getResultList();
 
         // Implement your custom logic to organize the years chronologically for each Carrera
