@@ -1,5 +1,6 @@
 package integrador2Arqui.repositorios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import integrador2Arqui.DTO.EstudianteDTO;
@@ -24,8 +25,15 @@ public class RepoEstudianteMySQL implements RepoEstudiante {
 
 	@Override
 	public List<EstudianteDTO> getAll() {
-		TypedQuery<Estudiante> query = manager.createQuery("SELECT e FROM Estudiante e", Estudiante.class);
-		return query.getResultList();
+		TypedQuery<Estudiante> query = manager.createQuery("SELECT e FROM Estudiante e ORDER BY e.dni DESC",
+				Estudiante.class);
+		List<Estudiante> estudiantes = query.getResultList();
+		List<EstudianteDTO> estudiantesDTO = new ArrayList<EstudianteDTO>();
+		for (Estudiante estudiante : estudiantes) {
+			EstudianteDTO estudianteDTO = new EstudianteDTO(/* Parametros del constructor; estudiante.getNombre() */);
+			estudiantesDTO.add(estudianteDTO);
+		}
+		return estudiantesDTO;
 	}
 
 	@Override
@@ -33,15 +41,23 @@ public class RepoEstudianteMySQL implements RepoEstudiante {
 		TypedQuery<Estudiante> query = manager
 				.createQuery("SELECT e FROM Estudiante e WHERE e.numeroLibreta = :libreta", Estudiante.class);
 		query.setParameter("libreta", numeroLibreta);
-		return query.getSingleResult();
+		Estudiante estudiante = query.getSingleResult();
+		EstudianteDTO estudianteDTO = new EstudianteDTO(/* Parametros del constructor; estudiante.getNombre() */);
+		return estudianteDTO;
 	}
 
 	@Override
-	public List<Estudiante> getByGenero(String genero) {
+	public List<EstudianteDTO> getAllByGenero(String genero) {
 		TypedQuery<Estudiante> query = manager.createQuery("SELECT e FROM Estudiante e WHERE e.genero = :genero",
 				Estudiante.class);
 		query.setParameter("genero", genero);
-		return query.getResultList();
+		List<Estudiante> estudiantes = query.getResultList();
+		List<EstudianteDTO> estudiantesDTO = new ArrayList<EstudianteDTO>();
+		for (Estudiante estudiante : estudiantes) {
+			EstudianteDTO estudianteDTO = new EstudianteDTO(/* Parametros del constructor; estudiante.getNombre() */);
+			estudiantesDTO.add(estudianteDTO);
+		}
+		return estudiantesDTO;
 	}
 
 	@Override

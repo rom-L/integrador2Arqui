@@ -20,8 +20,7 @@ public class RepoEstudianteCarreraMySQL implements RepoEstudianteCarrera {
 
 	
 	@Override
-    public void insert(Estudiante estudiante, Carrera carrera) {
-        // Associate an estudiante with a carrera
+    public void matricular(Estudiante estudiante, Carrera carrera) {
         estudiante.addCarrera(carrera);
         manager.merge(estudiante);
     }
