@@ -1,33 +1,19 @@
 package integrador2Arqui.DTO;
 
 public class ReporteDTO {
-    private Long idCarrera;
-    private String nombreCarrera;
+    private CarreraDTO carrera;
     private int cantInscriptos;
     private int egresadosPorAno;
 
-    public ReporteDTO(Long idCarrera, String nombreCarrera, int cantInscriptos, int egresadosPorAno) {
-        this.idCarrera = idCarrera;
-        this.nombreCarrera = nombreCarrera;
+    public ReporteDTO(CarreraDTO carrera, int cantInscriptos, int egresadosPorAno) {
+        this.carrera = carrera;
         this.cantInscriptos = cantInscriptos;
         this.egresadosPorAno = egresadosPorAno;
     }
 
-    
-    public Long getIdCarrera() {
-        return idCarrera;
-    }
 
-    public void setIdCarrera(Long idCarrera) {
-        this.idCarrera = idCarrera;
-    }
-
-    public String getNombreCarrera() {
-        return nombreCarrera;
-    }
-
-    public void setNombreCarrera(String nombreCarrera) {
-        this.nombreCarrera = nombreCarrera;
+    public CarreraDTO getCarrera() {
+        return carrera;
     }
 
     public int getCantInscriptos() {
@@ -48,6 +34,6 @@ public class ReporteDTO {
 
     @Override
     public String toString() {
-        return this.idCarrera + " - " + this.nombreCarrera + "| Inscriptos: " + this.cantInscriptos + "| Egresados por año: " + this.egresadosPorAno;
+        return this.carrera + "| Inscriptos: " + this.cantInscriptos + "| Egresados por año: " + this.egresadosPorAno;
     }
 }
