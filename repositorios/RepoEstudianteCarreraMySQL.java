@@ -2,7 +2,7 @@ package integrador2Arqui.repositorios;
 
 import java.util.List;
 
-import integrador2Arqui.DTO.CarreraConInscriptosDTO;
+import integrador2Arqui.DTO.CarreraDTO;
 import integrador2Arqui.DTO.EstudianteDTO;
 import integrador2Arqui.DTO.ReporteDTO;
 import integrador2Arqui.clases.Carrera;
@@ -27,11 +27,11 @@ public class RepoEstudianteCarreraMySQL implements RepoEstudianteCarrera {
 
 	//REVISAR
     @Override
-    public CarreraConInscriptosDTO getCarrerasConInscriptos() {
+    public CarreraDTO getCarrerasConInscriptos() {
         // Retrieve a list of CarreraConInscriptosDTO objects (courses with enrolled students), sorted by the number of inscriptos
-        Query query = manager.createQuery("SELECT NEW integrador2Arqui.DTO.CarreraConInscriptosDTO(c, c.estudiantes.size()) FROM Carrera c ORDER BY c.estudiantes.size() DESC");
-        List<CarreraConInscriptosDTO> carrerasConInscriptos = query.getResultList();
-        return new CarreraConInscriptosDTO(carrerasConInscriptos);
+        Query query = manager.createQuery("SELECT NEW integrador2Arqui.DTO.CarreraDTO(c, c.estudiantes.size()) FROM Carrera c ORDER BY c.estudiantes.size() DESC");
+        List<CarreraDTO> carrerasConInscriptos = query.getResultList();
+        return new CarreraDTO(carrerasConInscriptos);
     }
 
     //REVISAR
