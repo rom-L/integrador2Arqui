@@ -1,6 +1,6 @@
 package clases;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "estudiantes_carreras")

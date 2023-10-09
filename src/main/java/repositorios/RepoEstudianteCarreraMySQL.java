@@ -8,8 +8,8 @@ import clases.Estudiante;
 import clases.EstudianteCarrera;
 import interfaces.RepoEstudianteCarrera;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +52,7 @@ public class RepoEstudianteCarreraMySQL implements RepoEstudianteCarrera {
     //REVISAR
     @Override
     public List<CarreraDTO> getCarrerasConInscriptos() {
-        TypedQuery<Carrera> query = manager.createQuery("SELECT c FROM Carrera c ORDER BY c.estudiantes.size DESC", Carrera.class);
+        TypedQuery<Carrera> query = manager.createQuery("SELECT c FROM Carrera c JOIN c.estudiantes e GROUP BY c ORDER BY SIZE(e) DESC", Carrera.class);
         List<Carrera> carreras = query.getResultList();
         List<CarreraDTO> carrerasDTO = new ArrayList<CarreraDTO>();
         for (Carrera carrera : carreras) {

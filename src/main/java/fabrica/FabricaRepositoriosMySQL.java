@@ -7,8 +7,8 @@ import repositorios.RepoCarreraMySQL;
 import repositorios.RepoEstudianteCarreraMySQL;
 import repositorios.RepoEstudianteMySQL;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
 public class FabricaRepositoriosMySQL extends FabricaRepositorios {
     private static FabricaRepositoriosMySQL INSTANCE;

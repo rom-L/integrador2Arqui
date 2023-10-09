@@ -12,6 +12,7 @@ import repositorios.RepoEstudianteCarreraMySQL;
 import repositorios.RepoEstudianteMySQL;
 
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.util.List;
 
 public class main {
@@ -45,7 +46,7 @@ public class main {
         }
         //d)
         System.out.println("d)");
-        EstudianteDTO estt = repoEstudiante.getByLibreta("TE-557968524");
+        EstudianteDTO estt = repoEstudiante.getByLibreta("TE-557968525");
         System.out.println(estt);
         //e)
         System.out.println("e)");
@@ -65,6 +66,8 @@ public class main {
         for (EstudianteDTO est : ests) {
             System.out.println(estt);
         }
+
+        System.out.println();
 
         //3)
         System.out.println("|3|");

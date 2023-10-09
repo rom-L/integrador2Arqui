@@ -4,8 +4,8 @@ import DTO.EstudianteDTO;
 import clases.Estudiante;
 import interfaces.RepoEstudiante;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 
