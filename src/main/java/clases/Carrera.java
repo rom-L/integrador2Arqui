@@ -1,14 +1,15 @@
 package clases;
 
 import jakarta.persistence.*;
+
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "carreras")
 public class Carrera {
-	
-	@Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -17,7 +18,7 @@ public class Carrera {
 
     @ManyToMany(mappedBy = "carreras")
     private Set<Estudiante> estudiantes;
-    
+
     public Carrera(String nombre) {
         this();
         this.nombre = nombre;
@@ -34,12 +35,12 @@ public class Carrera {
     }
 
     public String getNombre() {
-		return nombre;
-	}
+        return nombre;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public void addEstudiante(Estudiante estudiante) {
         estudiantes.add(estudiante);
@@ -49,7 +50,7 @@ public class Carrera {
         estudiantes.remove(estudiante);
     }
 
-	public int getId() {
-		return this.id;
-	}
+    public int getId() {
+        return this.id;
+    }
 }
