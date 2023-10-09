@@ -1,14 +1,14 @@
 package fabrica;
 
-import jakarta.persistence.EntityManagerFactory;
-
-import jakarta.persistence.Persistence;
 import interfaces.RepoCarrera;
 import interfaces.RepoEstudiante;
 import interfaces.RepoEstudianteCarrera;
 import repositorios.RepoCarreraMySQL;
 import repositorios.RepoEstudianteCarreraMySQL;
 import repositorios.RepoEstudianteMySQL;
+
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class FabricaRepositoriosMySQL extends FabricaRepositorios {
     private static FabricaRepositoriosMySQL INSTANCE;

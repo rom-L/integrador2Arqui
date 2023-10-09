@@ -2,8 +2,8 @@ package repositorios;
 
 import clases.Carrera;
 import interfaces.RepoCarrera;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 import java.util.List;
 

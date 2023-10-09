@@ -1,6 +1,6 @@
 package clases;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,6 +27,10 @@ public class Carrera {
     public Carrera(String nombre) {
         this.nombre = nombre;
         this.estudiantes = new HashSet<>();
+    }
+
+    public Carrera() {
+
     }
 
 

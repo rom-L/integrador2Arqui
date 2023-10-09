@@ -1,14 +1,14 @@
 package DTO;
 
 public class ReporteDTO {
-    private CarreraDTO carrera;
-    private int cantInscriptosPorAnio;
-    private int egresadosPorAnio;
-    private int anio;
-    
-    
-    
-	public ReporteDTO(CarreraDTO carrera, int cantInscriptosPorAnio, int egresadosPorAnio, int anio) {
+    private String carrera;
+    private Long cantInscriptosPorAnio;
+    private Long egresadosPorAnio;
+    private Long anio;
+
+
+
+	public ReporteDTO(String carrera, Long anio, Long cantInscriptosPorAnio, Long egresadosPorAnio) {
 		super();
 		this.carrera = carrera;
 		this.cantInscriptosPorAnio = cantInscriptosPorAnio;
@@ -17,22 +17,22 @@ public class ReporteDTO {
 	}
 
 
-	public CarreraDTO getCarrera() {
+	public String getCarrera() {
 		return carrera;
 	}
 
 
-	public int getCantInscriptosPorAnio() {
+	public Long getCantInscriptosPorAnio() {
 		return cantInscriptosPorAnio;
 	}
 
 
-	public int getEgresadosPorAnio() {
+	public Long getEgresadosPorAnio() {
 		return egresadosPorAnio;
 	}
 
 
-	public int getAnio() {
+	public Long getAnio() {
 		return anio;
 	}
 

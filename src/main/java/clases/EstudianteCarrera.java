@@ -1,43 +1,54 @@
 package clases;
 
-import jakarta.persistence.*;
-
-import java.util.Date;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "estudiante_carrera")
+@Table(name = "estudiantes_carreras")
 public class EstudianteCarrera {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @ManyToOne
-    @JoinColumn(name = "estudiante_dni")
+    @JoinColumn(name = "estudiantes_dni")
     private Estudiante estudiante;
 
     @ManyToOne
-    @JoinColumn(name = "carrera_id")
+    @JoinColumn(name = "carreras_id")
     private Carrera carrera;
 
     @Column(name = "anio_inscripcion")
-    private Date anioInscripcion;
+    private int anioInscripcion;
 
     @Column(name = "anio_graduacion", nullable = true)
-    private Date anioGraduacion;
+    private int anioGraduacion;
 
-    public EstudianteCarrera(Estudiante estudiante, Carrera carrera, Date anioInscripcion, Date anioGraduacion) {
+    @Column(name = "antiguedad")
+    private int antiguedad;
+
+    public EstudianteCarrera(int id,Estudiante estudiante, Carrera carrera, int anioInscripcion, int anioGraduacion, int antiguedad) {
         this.estudiante = estudiante;
+        this.id = id;
         this.carrera = carrera;
         this.anioInscripcion = anioInscripcion;
         this.anioGraduacion = anioGraduacion;
+        this.antiguedad = antiguedad;
     }
 
     public EstudianteCarrera() {
 
     }
 
-    public Long getId() {
+    public int getAntiguedad() {
+        return antiguedad;
+    }
+
+    public void setAntiguedad(int antiguedad) {
+        this.antiguedad = antiguedad;
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -57,19 +68,19 @@ public class EstudianteCarrera {
         this.carrera = carrera;
     }
 
-    public Date getAnioInscripcion() {
+    public int getAnioInscripcion() {
         return anioInscripcion;
     }
 
-    public void setAnioInscripcion(Date anioInscripcion) {
+    public void setAnioInscripcion(int anioInscripcion) {
         this.anioInscripcion = anioInscripcion;
     }
 
-    public Date getAnioGraduacion() {
+    public int getAnioGraduacion() {
         return anioGraduacion;
     }
 
-    public void setAnioGraduacion(Date anioGraduacion) {
+    public void setAnioGraduacion(int anioGraduacion) {
         this.anioGraduacion = anioGraduacion;
     }
 }

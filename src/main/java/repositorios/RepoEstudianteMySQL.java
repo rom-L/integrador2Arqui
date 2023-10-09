@@ -1,14 +1,13 @@
 package repositorios;
 
-import java.util.ArrayList;
-
-import java.util.List;
-
 import DTO.EstudianteDTO;
 import clases.Estudiante;
 import interfaces.RepoEstudiante;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.TypedQuery;
+
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RepoEstudianteMySQL implements RepoEstudiante {
 	private EntityManager manager;
@@ -40,7 +39,7 @@ public class RepoEstudianteMySQL implements RepoEstudiante {
 	}
 
 	@Override
-	public EstudianteDTO getByLibreta(int numeroLibreta) {
+	public EstudianteDTO getByLibreta(String numeroLibreta) {
 		TypedQuery<Estudiante> query = manager
 				.createQuery("SELECT e FROM Estudiante e WHERE e.numeroLibreta = :libreta", Estudiante.class);
 		query.setParameter("libreta", numeroLibreta);
