@@ -1,15 +1,12 @@
 package integrador2Arqui;
 
 import java.io.FileNotFoundException;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
 
 import integrador2Arqui.DTO.CarreraDTO;
 import integrador2Arqui.DTO.EstudianteDTO;
@@ -50,7 +47,7 @@ public class main {
 		}
 		//d)
 		EstudianteDTO estt = repoEstudiante.getByLibreta(557968524);
-		//System.out.println(est);
+		System.out.println(estt);
 		//e)
 		ests = repoEstudiante.getAllByGenero("Male");
 		for (EstudianteDTO est : ests) {
@@ -73,37 +70,5 @@ public class main {
 			System.out.println(reporte);
 		}
 		
-	}
-	public static List<Estudiante> obtenerEstudiantes() throws FileNotFoundException, IOException {
-		List<Estudiante> lista = new ArrayList<>();
-		CSVParser parser = CSVFormat.DEFAULT.withHeader()
-				.parse(new FileReader("src/integrador2Arqui/CSV/estudiantes.csv"));
-		for (CSVRecord row : parser) {
-			Estudiante estudiante = new Estudiante(Integer.parseInt(row.get("DNI")), row.get("nombre"), row.get("apellidos"), Integer.parseInt(row.get("edad")), row.get("genero"), row.get("ciudad"), row.get("LU"));
-			lista.add(estudiante);
-		}
-		return lista;	
-	}
-	
-	public static List<Carrera> obtenerCarreras() throws FileNotFoundException, IOException {
-		List<Carrera> lista = new ArrayList<>();
-		CSVParser parser = CSVFormat.DEFAULT.withHeader()
-				.parse(new FileReader("src/integrador2Arqui/CSV/carreras.csv"));
-		for (CSVRecord row : parser) {
-			Carrera carrera = new Carrera(Integer.parseInt(row.get("id_carrera")), row.get("carrera"));
-			lista.add(carrera);
-		}
-		return lista;
-	}
-	
-	public static List<EstudianteCarrera> obtenerEstudiantesCarreras() throws FileNotFoundException, IOException {
-		List<EstudianteCarrera> lista = new ArrayList<>();
-		CSVParser parser = CSVFormat.DEFAULT.withHeader()
-				.parse(new FileReader("src/integrador2Arqui/CSV/estudianteCarrera.csv"));
-		for (CSVRecord row : parser) {
-			EstudianteCarrera carrera = new EstudianteCarrera(Integer.parseInt(row.get("id_estudiante")), Integer.parseInt(row.get("id_carrera")), Boolean.parseBoolean(row.get("graduado")), row.get("antiguedad"));
-			lista.add(carrera);
-		}
-		return lista;
 	}
 }
