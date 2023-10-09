@@ -17,19 +17,14 @@ public class Carrera {
 
     @ManyToMany(mappedBy = "carreras")
     private Set<Estudiante> estudiantes;
-
-    public Carrera(int id, String nombre) {
-    	this(nombre);
-    	this.id = id;
-        this.estudiantes = new HashSet<>();
-    }
     
     public Carrera(String nombre) {
+        this();
         this.nombre = nombre;
         this.estudiantes = new HashSet<>();
     }
 
-    public Carrera() {
+    protected Carrera() {
 
     }
 
