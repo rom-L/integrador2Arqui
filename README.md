@@ -1,2 +1,0 @@
-# integrador2Arqui
-laburation

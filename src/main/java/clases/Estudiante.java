@@ -1,6 +1,7 @@
-package integrador2Arqui.clases;
+package clases;
 
 import jakarta.persistence.*;
+
 import java.util.HashSet;
 import java.util.Set;
 

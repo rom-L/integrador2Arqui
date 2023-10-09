@@ -1,8 +1,8 @@
-package integrador2Arqui.interfaces;
+package interfaces;
+
+import clases.Carrera;
 
 import java.util.List;
-
-import integrador2Arqui.clases.Carrera;
 
 public interface RepoCarrera {
 	public void insert(Carrera c);

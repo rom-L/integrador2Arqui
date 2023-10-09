@@ -1,11 +1,11 @@
-package integrador2Arqui.repositorios;
+package repositorios;
 
-import java.util.List;
-
-import integrador2Arqui.clases.Carrera;
-import integrador2Arqui.interfaces.RepoCarrera;
+import clases.Carrera;
+import interfaces.RepoCarrera;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+
+import java.util.List;
 
 public class RepoCarreraMySQL implements RepoCarrera {
 	private EntityManager manager;

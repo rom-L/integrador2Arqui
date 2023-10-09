@@ -1,9 +1,9 @@
-package integrador2Arqui.interfaces;
+package interfaces;
+
+import DTO.EstudianteDTO;
+import clases.Estudiante;
 
 import java.util.List;
-
-import integrador2Arqui.DTO.EstudianteDTO;
-import integrador2Arqui.clases.Estudiante;
 
 public interface RepoEstudiante {
 	public void insert(Estudiante estudiante);

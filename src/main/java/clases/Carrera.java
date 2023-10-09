@@ -1,4 +1,4 @@
-package integrador2Arqui.clases;
+package clases;
 
 import jakarta.persistence.*;
 import java.util.HashSet;
@@ -50,7 +50,7 @@ public class Carrera {
         estudiantes.remove(estudiante);
     }
 
-	public long getId() {
+	public int getId() {
 		return this.id;
 	}
 }

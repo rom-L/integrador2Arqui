@@ -1,4 +1,4 @@
-package integrador2Arqui.DTO;
+package DTO;
 
 public class ReporteDTO {
     private CarreraDTO carrera;

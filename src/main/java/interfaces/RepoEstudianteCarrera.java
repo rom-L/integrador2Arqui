@@ -1,12 +1,12 @@
-package integrador2Arqui.interfaces;
+package interfaces;
+
+import DTO.CarreraDTO;
+import DTO.EstudianteDTO;
+import DTO.ReporteDTO;
+import clases.Carrera;
+import clases.Estudiante;
 
 import java.util.List;
-
-import integrador2Arqui.DTO.CarreraDTO;
-import integrador2Arqui.DTO.EstudianteDTO;
-import integrador2Arqui.DTO.ReporteDTO;
-import integrador2Arqui.clases.Carrera;
-import integrador2Arqui.clases.Estudiante;
 
 public interface RepoEstudianteCarrera {
 	public void matricular(Estudiante estudiante, Carrera carrera);	//matricula un estudiante a una carrera

@@ -1,11 +1,12 @@
-package integrador2Arqui.repositorios;
+package repositorios;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
-import integrador2Arqui.DTO.EstudianteDTO;
-import integrador2Arqui.clases.Estudiante;
-import integrador2Arqui.interfaces.RepoEstudiante;
+import DTO.EstudianteDTO;
+import clases.Estudiante;
+import interfaces.RepoEstudiante;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 

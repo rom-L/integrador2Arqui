@@ -1,17 +1,17 @@
-package integrador2Arqui.repositorios;
+package repositorios;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import integrador2Arqui.DTO.CarreraDTO;
-import integrador2Arqui.DTO.EstudianteDTO;
-import integrador2Arqui.DTO.ReporteDTO;
-import integrador2Arqui.clases.Carrera;
-import integrador2Arqui.clases.Estudiante;
-import integrador2Arqui.interfaces.RepoEstudianteCarrera;
+import DTO.CarreraDTO;
+import DTO.EstudianteDTO;
+import DTO.ReporteDTO;
+import clases.Carrera;
+import clases.Estudiante;
+import interfaces.RepoEstudianteCarrera;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RepoEstudianteCarreraMySQL implements RepoEstudianteCarrera {
 	private EntityManager manager;
@@ -30,7 +30,7 @@ public class RepoEstudianteCarreraMySQL implements RepoEstudianteCarrera {
 	//REVISAR
     @Override
     public List<CarreraDTO> getCarrerasConInscriptos() {
-        TypedQuery<Carrera> query = manager.createQuery("SELECT c FROM Carrera c ORDER BY c.estudiantes.size() DESC", Carrera.class);
+        TypedQuery<Carrera> query = manager.createQuery("SELECT c FROM Carrera c ORDER BY c.estudiantes.size DESC", Carrera.class);
         List<Carrera> carreras = query.getResultList();
 		List<CarreraDTO> carrerasDTO = new ArrayList<CarreraDTO>();
 		for (Carrera carrera : carreras) {
@@ -47,7 +47,7 @@ public class RepoEstudianteCarreraMySQL implements RepoEstudianteCarrera {
         query.setParameter("carreraId", carrera.getId());
         query.setParameter("ciudadResidencia", ciudadResidencia);
         List<Estudiante> estudiantes = query.getResultList();
-		List<EstudianteDTO> estudiantesDTO = new ArrayList<EstudianteDTO>();
+        List<EstudianteDTO> estudiantesDTO = new ArrayList<EstudianteDTO>();
 		for (Estudiante estudiante : estudiantes) {
 			EstudianteDTO estudianteDTO = new EstudianteDTO(estudiante.getDni(), estudiante.getNombres(), 
 															estudiante.getApellido(), estudiante.getEdad(), 

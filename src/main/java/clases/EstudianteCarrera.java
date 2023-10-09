@@ -1,8 +1,8 @@
-package integrador2Arqui.clases;
-
-import java.util.Date;
+package clases;
 
 import jakarta.persistence.*;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "estudiante_carrera")
@@ -31,6 +31,10 @@ public class EstudianteCarrera {
         this.carrera = carrera;
         this.anioInscripcion = anioInscripcion;
         this.anioGraduacion = anioGraduacion;
+    }
+
+    public EstudianteCarrera() {
+
     }
 
     public Long getId() {

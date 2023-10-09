@@ -1,20 +1,21 @@
-package integrador2Arqui.fabrica;
+package fabrica;
 
 import jakarta.persistence.EntityManagerFactory;
+
 import jakarta.persistence.Persistence;
-import integrador2Arqui.interfaces.RepoCarrera;
-import integrador2Arqui.interfaces.RepoEstudiante;
-import integrador2Arqui.interfaces.RepoEstudianteCarrera;
-import integrador2Arqui.repositorios.RepoCarreraMySQL;
-import integrador2Arqui.repositorios.RepoEstudianteCarreraMySQL;
-import integrador2Arqui.repositorios.RepoEstudianteMySQL;
+import interfaces.RepoCarrera;
+import interfaces.RepoEstudiante;
+import interfaces.RepoEstudianteCarrera;
+import repositorios.RepoCarreraMySQL;
+import repositorios.RepoEstudianteCarreraMySQL;
+import repositorios.RepoEstudianteMySQL;
 
 public class FabricaRepositoriosMySQL extends FabricaRepositorios {
     private static FabricaRepositoriosMySQL INSTANCE;
     private EntityManagerFactory entityManagerFactory;
 
     private FabricaRepositoriosMySQL() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("integrador2ArquiPU");
+        entityManagerFactory = Persistence.createEntityManagerFactory("integrador2");
     }
 
     public static FabricaRepositoriosMySQL getInstance() {

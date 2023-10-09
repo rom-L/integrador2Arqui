@@ -1,10 +1,10 @@
-package integrador2Arqui.fabrica;
+package fabrica;
+
+import interfaces.RepoCarrera;
+import interfaces.RepoEstudiante;
+import interfaces.RepoEstudianteCarrera;
 
 import java.sql.SQLException;
-
-import integrador2Arqui.interfaces.RepoCarrera;
-import integrador2Arqui.interfaces.RepoEstudiante;
-import integrador2Arqui.interfaces.RepoEstudianteCarrera;
 
 public abstract class FabricaRepositorios {
 	public static final int MYSQL_JPA = 1;
