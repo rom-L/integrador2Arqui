@@ -13,6 +13,7 @@ import org.apache.commons.csv.CSVRecord;
 
 import integrador2Arqui.DTO.CarreraDTO;
 import integrador2Arqui.DTO.EstudianteDTO;
+import integrador2Arqui.DTO.ReporteDTO;
 import integrador2Arqui.clases.Carrera;
 import integrador2Arqui.clases.Estudiante;
 import integrador2Arqui.clases.EstudianteCarrera;
@@ -64,6 +65,12 @@ public class main {
 		ests = repoEstudianteCarrera.getEstudiantesByCarrera(car1, "Las Heras");
 		for (EstudianteDTO est : ests) {
 			System.out.println(estt);
+		}
+		
+		//3)
+		List<ReporteDTO> reportes = repoEstudianteCarrera.getReportes();
+		for (ReporteDTO reporte : reportes) {
+			System.out.println(reporte);
 		}
 		
 	}
