@@ -1,6 +1,6 @@
 package repositorios;
 
-import DTO.CarreraDTO;
+import DTO.CarreraConInscriptosYEgresadosDTO;
 import DTO.EstudianteDTO;
 import DTO.ReporteDTO;
 import clases.Carrera;
@@ -26,9 +26,7 @@ public class RepoMatriculacionMySQL implements RepoMatriculacion {
         manager.getTransaction().begin();
 
 
-        // if both are persisted somewhere
 
-            System.out.println("existen");
             Matriculacion matriculacion = new Matriculacion(estudiante, carrera, anioInscripcion, anioGraduacion, antiguedad);
             manager.persist(matriculacion);
 
@@ -51,15 +49,15 @@ public class RepoMatriculacionMySQL implements RepoMatriculacion {
 
 
     @Override
-    public List<CarreraDTO> getCarrerasConInscriptosDescendentemente() {
+    public List<CarreraConInscriptosYEgresadosDTO> getCarrerasConInscriptosDescendentemente() {
         TypedQuery<Carrera> query = manager.createQuery(
                 "SELECT c FROM Carrera c JOIN c.matriculaciones m GROUP BY c.id, c.nombre ORDER BY COUNT(m) DESC",
                 Carrera.class
         );
         List<Carrera> carreras = query.getResultList();
-        List<CarreraDTO> carrerasDTO = new ArrayList<CarreraDTO>();
+        List<CarreraConInscriptosYEgresadosDTO> carrerasDTO = new ArrayList<>();
         for (Carrera carrera : carreras) {
-            CarreraDTO carreraDTO = new CarreraDTO(carrera.getNombre());
+            CarreraConInscriptosYEgresadosDTO carreraDTO = new CarreraConInscriptosYEgresadosDTO(carrera.getNombre());
             carrerasDTO.add(carreraDTO);
         }
         return carrerasDTO;
@@ -88,17 +86,72 @@ public class RepoMatriculacionMySQL implements RepoMatriculacion {
     }
 
     @Override
-    public List<ReporteDTO> getReportes() {
-        TypedQuery<ReporteDTO> query = manager.createQuery(
-                "SELECT NEW DTO.ReporteDTO(c.nombre, " +
-                        "ec.anioInscripcion, " +
-                        "COUNT(COALESCE(ec.anioInscripcion, 0)), " +
-                        "COUNT(COALESCE(ec.anioGraduacion, 0))) FROM Matriculacion ec " +
-                        "LEFT JOIN ec.carrera c " +
-                        "GROUP BY c.nombre, ec.anioInscripcion " +
-                        "ORDER BY c.nombre ASC, ec.anioInscripcion ASC", ReporteDTO.class);
+    public ReporteDTO getReporte() {
+        ReporteDTO reporteDTO = new ReporteDTO();
 
-        return query.getResultList();
+        /////////Obtenemos todas las carrerasDTO
+        TypedQuery<CarreraConInscriptosYEgresadosDTO> allCarreras = manager.createQuery(
+                "SELECT NEW DTO.CarreraConInscriptosYEgresadosDTO(c.nombre) FROM Carrera c ORDER BY c.nombre ASC",
+                CarreraConInscriptosYEgresadosDTO.class
+        );
+
+        List<CarreraConInscriptosYEgresadosDTO> carreraConInscriptosYEgresadosDTOS = allCarreras.getResultList();
+        /////////Obtenemos todas las carrerasDTO
+
+        /////////Obtenemos todos los años registrados dónde hubo aunque sea una inscripción y graduacion
+        TypedQuery<Integer> distinctInscripcionYearsQuery = manager.createQuery(
+                "SELECT DISTINCT m.anioInscripcion FROM Matriculacion m ORDER BY m.anioInscripcion ASC", Integer.class
+        );
+
+        List<Integer> inscripcionYears = distinctInscripcionYearsQuery.getResultList();
+
+        TypedQuery<Integer> distinctGraduacionYearsQuery = manager.createQuery(
+                "SELECT DISTINCT m.anioInscripcion FROM Matriculacion m ORDER BY m.anioGraduacion ASC", Integer.class
+        );
+
+        List<Integer> graduacionYears = distinctGraduacionYearsQuery.getResultList();
+        /////////Obtenemos todos los años registrados dónde hubo aunque sea una inscripción y graduacion
+
+        //por cada carrera
+        for (CarreraConInscriptosYEgresadosDTO c : carreraConInscriptosYEgresadosDTOS) {
+            for (Integer inscripcionYear : inscripcionYears) {
+                //agregar todos los estudiantes que se inscribieron en x carrera en x año
+                TypedQuery<EstudianteDTO> query = manager.createQuery(
+                        "SELECT NEW DTO.EstudianteDTO(e.dni, e.nombres, e.apellido, e.edad, e.genero, e.ciudadResidencia, e.numeroLibreta) " +
+                                "FROM Matriculacion m " +
+                                "JOIN m.estudiante e " +
+                                "WHERE m.carrera.nombre = :carreraNombre " +
+                                "AND m.anioInscripcion = :year",
+                        EstudianteDTO.class
+                );
+
+                query.setParameter("carreraNombre", c.getNombre());
+                query.setParameter("year", inscripcionYear);
+
+                c.agregarInscriptosEnAnio(query.getResultList(), inscripcionYear);
+            }
+
+            for (Integer graduacionYear : graduacionYears) {
+                //agregar todos los estudiantes que se inscribieron en x carrera en x año
+                TypedQuery<EstudianteDTO> query = manager.createQuery(
+                        "SELECT NEW DTO.EstudianteDTO(e.dni, e.nombres, e.apellido, e.edad, e.genero, e.ciudadResidencia, e.numeroLibreta) " +
+                                "FROM Matriculacion m " +
+                                "JOIN m.estudiante e " +
+                                "WHERE m.carrera.nombre = :carreraNombre " +
+                                "AND m.anioGraduacion = :year",
+                        EstudianteDTO.class
+                );
+
+                query.setParameter("carreraNombre", c.getNombre());
+                query.setParameter("year", graduacionYear);
+
+                c.agregarGraduadosEnAnio(query.getResultList(), graduacionYear);
+            }
+
+            reporteDTO.agregarCarrerasConInscriptosEnAnio(c);
+        }
+
+        return reporteDTO;
     }
 
 }

@@ -3,16 +3,16 @@ package DTO;
 
 public class EstudianteDTO {
     private int dni;
-    private String nombre;
+    private String nombres;
     private String apellido;
     private int edad;
     private String genero;
     private String ciudadResidencia;
     private String numeroLibreta;
 
-    public EstudianteDTO(int dni, String nombre, String apellido, int edad, String genero, String ciudadResidencia, String numeroLibreta) {
+    public EstudianteDTO(int dni, String nombres, String apellido, int edad, String genero, String ciudadResidencia, String numeroLibreta) {
         this.dni = dni;
-        this.nombre = nombre;
+        this.nombres = nombres;
         this.apellido = apellido;
         this.edad = edad;
         this.genero = genero;
@@ -25,8 +25,8 @@ public class EstudianteDTO {
         return dni;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombres() {
+        return nombres;
     }
 
     public String getApellido() {
@@ -51,6 +51,6 @@ public class EstudianteDTO {
 
     @Override
     public String toString() {
-        return this.dni + " - " + this.nombre + " " + this.apellido + "| Edad: " + this.edad + "| Genero: " + this.genero + "| Ciudad: " + this.ciudadResidencia + "| Nro Libreta: " + this.numeroLibreta;
+        return this.dni + " - " + this.nombres + " " + this.apellido + "| Edad: " + this.edad + "| Genero: " + this.genero + "| Ciudad: " + this.ciudadResidencia + "| Nro Libreta: " + this.numeroLibreta;
     }
 }

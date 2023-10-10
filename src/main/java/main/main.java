@@ -1,6 +1,6 @@
 package main;
 
-import DTO.CarreraDTO;
+import DTO.CarreraConInscriptosYEgresadosDTO;
 import DTO.EstudianteDTO;
 import DTO.ReporteDTO;
 import clases.Carrera;
@@ -42,9 +42,9 @@ public class main {
         repoCarrera.insert(car1);
         repoCarrera.insert(car2);
         repoMatriculacion.matricular(est1, car1, 2017, null, 4);
-        repoMatriculacion.matricular(est2, car1, 2018, null, 3);
+        repoMatriculacion.matricular(est2, car1, 2018, 2021, 3);
         repoMatriculacion.matricular(est1, car2, 2018, null, 3);
-        repoMatriculacion.matricular(est2, car2, 2019, null, 2);
+        repoMatriculacion.matricular(est2, car2, 2019, 2020, 2);
         repoMatriculacion.matricular(est3, car2, 2020, null, 1);
         repoMatriculacion.matricular(est4, car2, 2016, null, 5);
         //c)
@@ -65,8 +65,8 @@ public class main {
         }
         //f)
         System.out.println("f)");
-        List<CarreraDTO> carrs = repoMatriculacion.getCarrerasConInscriptosDescendentemente();
-        for (CarreraDTO carr : carrs) {
+        List<CarreraConInscriptosYEgresadosDTO> carrs = repoMatriculacion.getCarrerasConInscriptosDescendentemente();
+        for (CarreraConInscriptosYEgresadosDTO carr : carrs) {
             System.out.println(carr);
         }
         //g)
@@ -80,12 +80,7 @@ public class main {
 
         //3)
         System.out.println("|3|");
-        List<ReporteDTO> reportes = repoMatriculacion.getReportes();
-        System.out.println("Number of reportes: " + reportes.size());
-
-        for (ReporteDTO reporte : reportes) {
-            System.out.println(reporte);
-        }
-
+        ReporteDTO reporte = repoMatriculacion.getReporte();
+        System.out.println(reporte);
     }
 }
