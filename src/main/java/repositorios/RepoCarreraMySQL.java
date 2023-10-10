@@ -17,16 +17,20 @@ public class RepoCarreraMySQL implements RepoCarrera {
 	
 	@Override
     public void insert(Carrera carrera) {
-        EntityTransaction transaction = manager.getTransaction();
-        try {
-            transaction.begin();
-            manager.persist(carrera);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null && transaction.isActive()) {
-                transaction.rollback();
+        Carrera existingCarrera = manager.find(Carrera.class, carrera.getId());
+
+        if (existingCarrera == null) {
+            EntityTransaction transaction = manager.getTransaction();
+            try {
+                transaction.begin();
+                manager.persist(carrera);
+                transaction.commit();
+            } catch (Exception e) {
+                if (transaction != null && transaction.isActive()) {
+                    transaction.rollback();
+                }
+                e.printStackTrace();
             }
-            e.printStackTrace();
         }
     }
 

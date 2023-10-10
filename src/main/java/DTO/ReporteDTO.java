@@ -16,8 +16,6 @@ public class ReporteDTO {
 
 	@Override
 	public String toString() {
-		return "ReporteDTO{" +
-				"carreras=" + carreras +
-				'}';
+		return "ReporteDTO{" + "carreras=" + carreras + '}';
 	}
 }

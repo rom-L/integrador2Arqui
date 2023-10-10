@@ -19,9 +19,13 @@ public class RepoEstudianteMySQL implements RepoEstudiante {
 	@Override
 	//2.a)
 	public void insert(Estudiante estudiante) {
-		manager.getTransaction().begin();
-		manager.persist(estudiante);
-		manager.getTransaction().commit();
+		Estudiante existingEstudiante = manager.find(Estudiante.class, estudiante.getDni());
+
+		if (existingEstudiante == null) {
+			manager.getTransaction().begin();
+			manager.persist(estudiante);
+			manager.getTransaction().commit();
+		}
 	}
 
 	@Override

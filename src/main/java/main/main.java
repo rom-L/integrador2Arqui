@@ -23,10 +23,9 @@ public class main {
         RepoEstudianteMySQL repoEstudiante = (RepoEstudianteMySQL) mySQLFactory.getRepoEstudiante();
         RepoMatriculacionMySQL repoMatriculacion = (RepoMatriculacionMySQL) mySQLFactory.getRepoMatriculacion();
 
-        ///2
-        System.out.println("|2|");
+        /**(CONSIGNA 2)**/
+        System.out.println("|CONSIGNA - 2|");
         //a)
-        System.out.println("a)");
         Estudiante est1 = new Estudiante(557968524, "Carlos Manuel", "Serrín", 18, "Male", "Las Heras", "TE-557968524");
         Estudiante est2 = new Estudiante(557968525, "Juan", "Martel", 24, "Male", "Las Heras", "TE-557968525");
         Estudiante est3 = new Estudiante(44685976, "Franco", "Scheneiderr", 90, "null", "montorneros", "TE-44685976");
@@ -35,8 +34,8 @@ public class main {
         repoEstudiante.insert(est2);
         repoEstudiante.insert(est3);
         repoEstudiante.insert(est4);
+
         //b)
-        System.out.println("b)");
         Carrera car1 = new Carrera("TUDAI");
         Carrera car2 = new Carrera("TUARI");
         repoCarrera.insert(car1);
@@ -47,28 +46,33 @@ public class main {
         repoMatriculacion.matricular(est2, car2, 2019, 2020, 2);
         repoMatriculacion.matricular(est3, car2, 2020, null, 1);
         repoMatriculacion.matricular(est4, car2, 2016, null, 5);
+
         //c)
         System.out.println("c)");
         List<EstudianteDTO> ests = repoEstudiante.getAll();
         for (EstudianteDTO est : ests) {
             System.out.println(est);
         }
+
         //d)
         System.out.println("d)");
         EstudianteDTO est = repoEstudiante.getByLibreta("TE-557968525");
         System.out.println(est);
+
         //e)
         System.out.println("e)");
         ests = repoEstudiante.getAllByGenero("Male");
         for (EstudianteDTO e : ests) {
             System.out.println(e);
         }
+
         //f)
         System.out.println("f)");
         List<CarreraConInscriptosYEgresadosDTO> carrs = repoMatriculacion.getCarrerasConInscriptosDescendentemente();
         for (CarreraConInscriptosYEgresadosDTO carr : carrs) {
             System.out.println(carr);
         }
+
         //g)
         System.out.println("g)");
         ests = repoMatriculacion.getEstudiantesByCarreraAndCiudadResidencia(car1, "Las Heras");
@@ -76,10 +80,10 @@ public class main {
             System.out.println(e);
         }
 
-        System.out.println();
+        System.out.println("--------------------------------");
 
-        //3)
-        System.out.println("|3|");
+        /**(CONSIGNA 3)**/
+        System.out.println("|CONSIGNA - 3|");
         ReporteDTO reporte = repoMatriculacion.getReporte();
         System.out.println(reporte);
     }

@@ -51,6 +51,6 @@ public class EstudianteDTO {
 
     @Override
     public String toString() {
-        return this.dni + " - " + this.nombres + " " + this.apellido + "| Edad: " + this.edad + "| Genero: " + this.genero + "| Ciudad: " + this.ciudadResidencia + "| Nro Libreta: " + this.numeroLibreta;
+        return "DNI: " + this.dni + " - " + this.nombres + " " + this.apellido + " | Edad: " + this.edad + " | Genero: " + this.genero + " | Ciudad: " + this.ciudadResidencia + " | Nro Libreta: " + this.numeroLibreta;
     }
 }

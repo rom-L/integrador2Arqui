@@ -23,14 +23,15 @@ public class RepoMatriculacionMySQL implements RepoMatriculacion {
 
     @Override
     public void matricular(Estudiante estudiante, Carrera carrera, int anioInscripcion, Integer anioGraduacion, int antiguedad) {
-        manager.getTransaction().begin();
+        Matriculacion matriculacion = new Matriculacion(estudiante, carrera, anioInscripcion, anioGraduacion, antiguedad);
 
+        Matriculacion existingMatriculacion = manager.find(Matriculacion.class, matriculacion.getId());
 
-
-            Matriculacion matriculacion = new Matriculacion(estudiante, carrera, anioInscripcion, anioGraduacion, antiguedad);
+        if (existingMatriculacion == null) {
+            manager.getTransaction().begin();
             manager.persist(matriculacion);
-
-        manager.getTransaction().commit();
+            manager.getTransaction().commit();
+        }
     }
 
 
