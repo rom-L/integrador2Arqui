@@ -16,13 +16,13 @@ public class Carrera {
     @Column(name = "nombre")
     private String nombre;
 
-    @ManyToMany(mappedBy = "carreras")
-    private Set<Estudiante> estudiantes;
+    @OneToMany(mappedBy = "carrera")
+    private Set<Matriculacion> matriculaciones;
 
     public Carrera(String nombre) {
         this();
         this.nombre = nombre;
-        this.estudiantes = new HashSet<>();
+        this.matriculaciones = new HashSet<>();
     }
 
     protected Carrera() {
@@ -30,8 +30,8 @@ public class Carrera {
     }
 
 
-    public Set<Estudiante> getEstudiantes() {
-        return estudiantes;
+    public Set<Matriculacion> getMatriculaciones() {
+        return matriculaciones;
     }
 
     public String getNombre() {
@@ -42,12 +42,12 @@ public class Carrera {
         this.nombre = nombre;
     }
 
-    public void addEstudiante(Estudiante estudiante) {
-        estudiantes.add(estudiante);
+    public void addMatriculacion(Matriculacion matriculacion) {
+        matriculaciones.add(matriculacion);
     }
 
-    public void removeEstudiante(Estudiante estudiante) {
-        estudiantes.remove(estudiante);
+    public void removeMatriculacion(Matriculacion matriculacion) {
+        matriculaciones.remove(matriculacion);
     }
 
     public int getId() {

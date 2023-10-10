@@ -2,7 +2,7 @@ package fabrica;
 
 import interfaces.RepoCarrera;
 import interfaces.RepoEstudiante;
-import interfaces.RepoEstudianteCarrera;
+import interfaces.RepoMatriculacion;
 
 import java.sql.SQLException;
 
@@ -13,7 +13,7 @@ public abstract class FabricaRepositorios {
 	
 	public abstract RepoEstudiante getRepoEstudiante();
 	
-	public abstract RepoEstudianteCarrera getRepoEstudianteCarrera();
+	public abstract RepoMatriculacion getRepoMatriculacion();
 	
 	public static FabricaRepositorios getFactory(int whichFactory) throws SQLException {
 		switch (whichFactory) {

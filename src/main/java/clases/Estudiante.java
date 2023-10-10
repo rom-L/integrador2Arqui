@@ -31,8 +31,8 @@ public class Estudiante {
 	@Column(name = "numero_libreta")
 	private String numeroLibreta;
 
-	@ManyToMany
-	private Set<Carrera> carreras;
+	@OneToMany(mappedBy = "estudiante")
+	private Set<Matriculacion> matriculaciones;
 
 	protected Estudiante() {
 		//se usa un constructor sin argumentos para que JPA instancie la entidad
@@ -47,7 +47,7 @@ public class Estudiante {
 		this.genero = genero;
 		this.ciudadResidencia = ciudadResidencia;
 		this.numeroLibreta = numeroLibreta;
-		this.carreras = new HashSet<>();
+		this.matriculaciones = new HashSet<>();
 	}
 
 	public int getDni() {
@@ -102,15 +102,15 @@ public class Estudiante {
 		this.numeroLibreta = numeroLibreta;
 	}
 
-	public Set<Carrera> getCarreras() {
-		return carreras;
+	public Set<Matriculacion> getMatriculaciones() {
+		return matriculaciones;
 	}
 
-	public void addCarrera(Carrera carrera) {
-		this.carreras.add(carrera);
+	public void addMatriculacion(Matriculacion matriculacion) {
+		this.matriculaciones.add(matriculacion);
 	}
 
-	public void removeCarrera(Carrera carrera) {
-		this.carreras.remove(carrera);
+	public void removeMatriculacion(Matriculacion matriculacion) {
+		this.matriculaciones.remove(matriculacion);
 	}
 }

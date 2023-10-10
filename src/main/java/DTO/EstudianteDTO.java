@@ -25,56 +25,28 @@ public class EstudianteDTO {
         return dni;
     }
 
-    public void setDni(int dni) {
-        this.dni = dni;
-    }
-
     public String getNombre() {
         return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public String getApellido() {
         return apellido;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
     public int getEdad() {
         return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
     }
 
     public String getGenero() {
         return genero;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
     public String getCiudadResidencia() {
         return ciudadResidencia;
     }
 
-    public void setCiudadResidencia(String ciudadResidencia) {
-        this.ciudadResidencia = ciudadResidencia;
-    }
-
     public String getNumeroLibreta() {
         return numeroLibreta;
-    }
-
-    public void setNumeroLibreta(String numeroLibreta) {
-        this.numeroLibreta = numeroLibreta;
     }
 
     @Override

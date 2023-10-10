@@ -6,7 +6,7 @@
     <persistence-unit name="integrador2">
         <class>clases.Carrera</class>
         <class>clases.Estudiante</class>
-        <class>clases.EstudianteCarrera</class>
+        <class>clases.Matriculacion</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

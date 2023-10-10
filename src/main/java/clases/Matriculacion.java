@@ -3,40 +3,39 @@ package clases;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "estudiantes_carreras")
-public class EstudianteCarrera {
+@Table(name = "matriculaciones")
+public class Matriculacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "estudiantes_dni")
+    @JoinColumn(name = "estudiante_dni")
     private Estudiante estudiante;
 
     @ManyToOne
-    @JoinColumn(name = "carreras_id")
+    @JoinColumn(name = "carrera_id")
     private Carrera carrera;
 
     @Column(name = "anio_inscripcion")
     private int anioInscripcion;
 
     @Column(name = "anio_graduacion", nullable = true)
-    private int anioGraduacion;
+    private Integer anioGraduacion;
 
     @Column(name = "antiguedad")
     private int antiguedad;
 
-    public EstudianteCarrera(int id,Estudiante estudiante, Carrera carrera, int anioInscripcion, int anioGraduacion, int antiguedad) {
+    public Matriculacion(Estudiante estudiante, Carrera carrera, int anioInscripcion, Integer anioGraduacion, int antiguedad) {
         this.estudiante = estudiante;
-        this.id = id;
         this.carrera = carrera;
         this.anioInscripcion = anioInscripcion;
         this.anioGraduacion = anioGraduacion;
         this.antiguedad = antiguedad;
     }
 
-    public EstudianteCarrera() {
+    public Matriculacion() {
 
     }
 

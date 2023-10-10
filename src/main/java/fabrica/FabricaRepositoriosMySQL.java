@@ -2,9 +2,9 @@ package fabrica;
 
 import interfaces.RepoCarrera;
 import interfaces.RepoEstudiante;
-import interfaces.RepoEstudianteCarrera;
+import interfaces.RepoMatriculacion;
 import repositorios.RepoCarreraMySQL;
-import repositorios.RepoEstudianteCarreraMySQL;
+import repositorios.RepoMatriculacionMySQL;
 import repositorios.RepoEstudianteMySQL;
 
 import jakarta.persistence.EntityManagerFactory;
@@ -38,8 +38,8 @@ public class FabricaRepositoriosMySQL extends FabricaRepositorios {
     }
 
     @Override
-    public RepoEstudianteCarrera getRepoEstudianteCarrera() {
-        return new RepoEstudianteCarreraMySQL(entityManagerFactory.createEntityManager());
+    public RepoMatriculacion getRepoMatriculacion() {
+        return new RepoMatriculacionMySQL(entityManagerFactory.createEntityManager());
     }
 
     @Override
